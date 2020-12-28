@@ -1,0 +1,11 @@
+@import "../global/global";
+
+header {
+    background-color: blue;
+    color: white;
+    @include font-bebas;
+    p {
+        margin: 0;
+        @include font-size(30);
+    }
+}
