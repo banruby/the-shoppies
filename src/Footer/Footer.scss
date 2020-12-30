@@ -1,0 +1,12 @@
+@import "../global/global";
+
+footer {
+    background-color: orange;
+    color: white;
+    @include font-bebas;
+    p {
+        text-align: center;
+        margin: 0;
+        @include font-size(30);
+    }
+}
