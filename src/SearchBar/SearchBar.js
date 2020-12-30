@@ -17,9 +17,6 @@ const SearchBar = (props) => {
         }
     }
 
-    console.log(inputValue);
-    console.log(searchTitle);
-
     return (
         <div className="wrapper">
             <form onSubmit={searchSubmit}>
