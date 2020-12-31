@@ -4,7 +4,7 @@ import "./SearchBar.scss";
 const SearchBar = (props) => {
 
     // destructuring the props
-    const { searchTitle, setSearchTitle, searchApi } = props;
+    const { searchTitle, setSearchTitle, searchApi, setSearchPreview } = props;
     // holding the search value as it's typed in state
     const [inputValue, setInputValue] = useState('');
 

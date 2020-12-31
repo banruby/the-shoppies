@@ -16,17 +16,24 @@ function App() {
   const [searchList, setSearchList] = useState([]);
   // holds the film selected for preview
   const [searchPreview, setSearchPreview] = useState([]);
+  // holds films added to array of nominees
+  const [nominees, setNominees] = useState([]);
 
   const searchApi = (searchTerm) => {
     const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
 
     axios.get(apiUrl).then((resp) => {
       setSearchList(resp.data.Search);
+      const defaultPreview = [...resp.data.Search];
+      defaultPreview.length = 1;
+      setSearchPreview(defaultPreview);
     }).catch(error => {
       // placeholder for error handling
       console.log(error)
     })
   }
+
+  console.log(searchPreview);
 
   return (
     <div className="App">
@@ -38,7 +45,10 @@ function App() {
       />
       <SearchList 
         searchList={searchList}
+        searchPreview={searchPreview}
         setSearchPreview={setSearchPreview}
+        nominees={nominees}
+        setNominees={setNominees}
       />
       <Footer />
     </div>
