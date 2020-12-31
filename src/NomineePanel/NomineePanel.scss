@@ -1,0 +1,23 @@
+.nomineePanel {
+    ul {
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+    li {
+        width: calc(20% - 0.4rem);        
+    }
+    figure {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    img {
+        width: 100%;
+        display: block;
+    }
+}

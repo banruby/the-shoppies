@@ -5,15 +5,13 @@ import "./SearchList.scss";
 
 const SearchList = (props) => {
 
-    const { searchList, searchPreview, setSearchPreview, nominees, setNominees } = props;
+    const { searchList, searchPreview, setSearchPreview, nominees, setNominees, placeholder } = props;
 
     const handleClick = (id) => {
         const selectedFilm = searchList.filter(film => film.imdbID === id);
         setSearchPreview(selectedFilm);
         // i think i need a check here to see if there are actual results to display
     }
-
-    console.log(searchPreview.length);
 
     return (
         <section className="wrapper searchListContainer">
@@ -40,6 +38,7 @@ const SearchList = (props) => {
                         searchPreview={searchPreview}
                         nominees={nominees}
                         setNominees={setNominees}
+                        placeholder={placeholder}
                     />
                 }
             </div>

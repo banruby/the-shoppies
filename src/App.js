@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import axios from 'axios';
 import Header from './Header/Header';
 import SearchBar from './SearchBar/SearchBar';
+import NomineePanel from './NomineePanel/NomineePanel';
 import SearchList from './SearchList/SearchList';
 import Footer from './Footer/Footer';
-
 
 function App() {
 
   const apiKey = process.env.REACT_APP_API_KEY;
+  const placeholder = { placeholder: "http://placekitten.com/g/300/450" }
   // holds the value currently in the search field
   const [searchTitle, setSearchTitle] = useState('');
   // holds the list of searched titles
@@ -17,7 +18,7 @@ function App() {
   // holds the film selected for preview
   const [searchPreview, setSearchPreview] = useState([]);
   // holds films added to array of nominees
-  const [nominees, setNominees] = useState([]);
+  const [nominees, setNominees] = useState([placeholder, placeholder, placeholder, placeholder, placeholder]);
 
   const searchApi = (searchTerm) => {
     const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
@@ -33,8 +34,6 @@ function App() {
     })
   }
 
-  console.log(searchPreview);
-
   return (
     <div className="App">
       <Header />
@@ -44,12 +43,18 @@ function App() {
           setSearchTitle={setSearchTitle}
           searchApi={searchApi}
         />
+        <NomineePanel 
+          nominees={nominees}
+          setNominees={setNominees}
+          placeholder={placeholder}
+        />
         <SearchList 
           searchList={searchList}
           searchPreview={searchPreview}
           setSearchPreview={setSearchPreview}
           nominees={nominees}
           setNominees={setNominees}
+          placeholder={placeholder}
         />
       </main>
       <Footer />
