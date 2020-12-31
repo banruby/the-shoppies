@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SearchListItem from "../SearchListItem/SearchListItem";
 import SearchPreview from "../SearchPreview/SearchPreview";
 import "./SearchList.scss";
@@ -10,7 +10,6 @@ const SearchList = (props) => {
     const handleClick = (id) => {
         const selectedFilm = searchList.filter(film => film.imdbID === id);
         setSearchPreview(selectedFilm);
-        console.log(selectedFilm);
         // i think i need a check here to see if there are actual results to display
     }
 

@@ -38,18 +38,20 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <SearchBar 
-        searchTitle={searchTitle}
-        setSearchTitle={setSearchTitle}
-        searchApi={searchApi}
-      />
-      <SearchList 
-        searchList={searchList}
-        searchPreview={searchPreview}
-        setSearchPreview={setSearchPreview}
-        nominees={nominees}
-        setNominees={setNominees}
-      />
+      <main>
+        <SearchBar 
+          searchTitle={searchTitle}
+          setSearchTitle={setSearchTitle}
+          searchApi={searchApi}
+        />
+        <SearchList 
+          searchList={searchList}
+          searchPreview={searchPreview}
+          setSearchPreview={setSearchPreview}
+          nominees={nominees}
+          setNominees={setNominees}
+        />
+      </main>
       <Footer />
     </div>
   );

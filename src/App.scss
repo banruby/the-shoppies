@@ -1,1 +1,11 @@
-@import "./global/reset";
+@import "./global/global";
+
+main {
+    min-height: calc(100vh - 2rem);
+    //TODO: update to only include removing the exact height of the header and footer
+}
+
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
