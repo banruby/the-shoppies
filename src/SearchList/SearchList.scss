@@ -1,18 +1,27 @@
 @import "../global/global";
 
 .searchListContainer {
-    display: flex;
-    justify-content: space-between;
-    .half {
+    background-color: $darker;
+    padding: 2rem 0;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    .col {
         width: 49%;
-        &:first-child {
-            background-color: yellow;
-        }
+    }
+
+    .col-2 {
+        background-color: $white;
     }
 
     ul {
         margin: 0;
         padding: 0;
         list-style-type: none;
+    }
+
+    button {
+        display: block;
     }
 }

@@ -9,38 +9,50 @@ const SearchList = (props) => {
 
     const handleClick = (id) => {
         const selectedFilm = searchList.filter(film => film.imdbID === id);
+        const updatedUrl = updatePosterSize(selectedFilm)
+        selectedFilm[0].Poster = updatedUrl;
         setSearchPreview(selectedFilm);
-        // i think i need a check here to see if there are actual results to display
+        //TODO: add check to ensure there are results to display
+    }
+
+    const updatePosterSize = (data) => {
+        const url = data[0].Poster;
+        const updatedUrl = url.replace("300", "425");
+        return updatedUrl;
     }
 
     return (
-        <section className="wrapper searchListContainer">
-            <div className="half">
-                {searchList.length > 0 &&
-                    <ul>
-                        { searchList.map((film) => {
-                            return (
-                                <SearchListItem
-                                    key={film.imdbID}
-                                    id={film.imdbID}
-                                    title={film.Title}
-                                    year={film.Year}
-                                    handleClick={handleClick}
-                                />
-                            )})
-                        }
-                    </ul>
-                }
-            </div>
-            <div className="half">
-                {searchPreview.length > 0 &&
-                    <SearchPreview
-                        searchPreview={searchPreview}
-                        nominees={nominees}
-                        setNominees={setNominees}
-                        placeholder={placeholder}
-                    />
-                }
+        <section className="searchListContainer">
+            <div className="wrapper">
+                <div className="col col-1">
+                    <h3>Your Search Results:</h3>
+                    {searchList.length > 0 &&
+                        <ul>
+                            { searchList.map((film) => {
+                                return (
+                                    <SearchListItem
+                                        key={film.imdbID}
+                                        id={film.imdbID}
+                                        title={film.Title}
+                                        year={film.Year}
+                                        handleClick={handleClick}
+                                    />
+                                )})
+                            }
+                        </ul>
+                    }
+                </div>
+                <div className="col col-2">
+                    {searchPreview.length > 0 &&
+                        <SearchPreview
+                            searchPreview={searchPreview}
+                            nominees={nominees}
+                            setNominees={setNominees}
+                            placeholder={placeholder}
+                        />
+                    }
+                </div>
+
             </div>
         </section>
     )
