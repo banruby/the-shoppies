@@ -2,6 +2,14 @@
     font-family: 'Bebas Neue', 'Arial', 'sans-serif';
 }
 
+@mixin font-roboto {
+    font-family: 'Roboto', 'sans-serif';
+}
+
+@mixin transition {
+    transition: all 0.3s ease-in-out;
+}
+
 @mixin font-size($sizeValue) {
     font-size: $sizeValue * 1px;
     font-size: ($sizeValue / 20) * 1rem;

@@ -18,21 +18,21 @@ const SearchBar = (props) => {
     }
 
     return (
-        <div className="wrapper">
-            <form onSubmit={searchSubmit}>
-                <label className="visibilityHidden">
-                    Search:
-                <input 
-                    type="text" 
-                    placeholder={"find your faves..."} 
-                    value={inputValue} 
-                    onChange={(e) => setInputValue(e.target.value)}
-                />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-            <p>Search by title to find your Shoppie nominees!</p>
-        </div>
+        <section className="searchBar">
+            <div className="wrapper">
+                <p>Search by film title below to nominate your all-time favourites for the 2021 Shoppie Awards!</p>
+                <form onSubmit={searchSubmit}>
+                    <input
+                        type="text"
+                        placeholder={"search by film title"}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        aria-label="Search by film title"
+                    />
+                    <input type="submit" value="SEARCH" />
+                </form>
+            </div>
+        </section>
     )
 }
 

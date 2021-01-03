@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <header>
             <div className="wrapper">
-                <p>The Shoppies!</p>
+                <h1>The Shoppies</h1>
             </div>
         </header>
     )

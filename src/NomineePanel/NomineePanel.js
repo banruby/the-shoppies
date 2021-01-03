@@ -17,23 +17,26 @@ const NomineePanel = (props) => {
     }
 
     return (
-        <div className="wrapper nomineePanel">
-            <ul>
-                {nominees.map((nominee) => {
-                    return (
-                        <NomineeCard 
-                            key={nominee.imdbID}
-                            id={nominee.imdbID}
-                            title={nominee.Title}
-                            year={nominee.Year}
-                            poster={nominee.Poster}
-                            placeholder={nominee.placeholder}
-                            removeNominee={removeNominee}
-                        />
-                    )})
-                }
-            </ul>
-        </div>
+        <section className="nomineePanel">
+            <div className="wrapper">
+                <h2>Your Shoppie Nominees:</h2>
+                <ul>
+                    {nominees.map((nominee) => {
+                        return (
+                            <NomineeCard 
+                                key={nominee.imdbID}
+                                id={nominee.imdbID}
+                                title={nominee.Title}
+                                year={nominee.Year}
+                                poster={nominee.Poster}
+                                placeholder={nominee.placeholder}
+                                removeNominee={removeNominee}
+                            />
+                        )})
+                    }
+                </ul>
+            </div>
+        </section>
     )
 }
 

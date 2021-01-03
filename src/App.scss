@@ -3,9 +3,17 @@
 main {
     min-height: calc(100vh - 2rem);
     //TODO: update to only include removing the exact height of the header and footer
+    background-color: $white;
 }
 
 .wrapper {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+p {
+    @include font-roboto;
+    @include font-size(20);
+    margin: 0;
+    color: $text;
 }

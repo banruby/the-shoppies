@@ -1,11 +1,14 @@
 @import "../global/global";
 
 header {
-    background-color: blue;
-    color: white;
+    background-color: $dark;
+    color: $white;
     @include font-bebas;
-    p {
+    box-shadow: 10px 10px -10px rgba(33,35,38,0.1);
+    h1 {
         margin: 0;
-        @include font-size(30);
+        padding: 2rem 0;
+        letter-spacing: 2px;
+        @include font-size(60);
     }
 }
