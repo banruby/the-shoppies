@@ -1,9 +1,10 @@
 import React from 'react';
-import "./SearchPreview.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilm, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
 const SearchPreview = (props) => {
 
-    const { searchPreview, nominees, setNominees, placeholder } = props;
+    const { searchPreview, nominees, setNominees, placeholder, removeNominee } = props;
     
     const previewData = searchPreview[0]
     const alt = `${previewData.Title} poster`;
@@ -20,26 +21,32 @@ const SearchPreview = (props) => {
 
     const userChoices = nominees.filter(nominee => nominee.imdbID)
     const duplicateCheck = userChoices.filter(nominee => nominee.imdbID === previewData.imdbID)
+    const nomsRemaining = 5 - userChoices.length;
+    console.log(nomsRemaining)
 
-    console.log(userChoices)
+    const filmIcon = <FontAwesomeIcon icon={faFilm} className="icon filmIcon"/>
+    const calendarIcon = <FontAwesomeIcon icon={faCalendarAlt} className="icon calendarIcon" />
 
     return (
         <div>
             <img src={previewData.Poster} alt={alt}/>
-            <p>{previewData.Title}</p>
-            <p>{previewData.Year}</p>
+            <p><span className="heading">Title:</span> {previewData.Title}</p>
+            <p><span className="heading">Year:</span> {previewData.Year}</p>
             {
                 userChoices.length < 5 && duplicateCheck.length === 0 &&
-                <button onClick={addNominee}>NOMINATE</button>
+                <button className="primary" onClick={addNominee}>NOMINATE</button>
             }
-            {
-                userChoices.length > 4 &&
-                <p>You've filled up your nominations!</p>
-            }
-            {
-                duplicateCheck.length > 0 &&
-                <p>You've already chosen this film!</p>
-            }
+            <div className="warnings">
+                {
+                    duplicateCheck.length > 0 &&
+                    <button className="primary" onClick={() => removeNominee(previewData.imdbID)}>NOMINATED</button>
+                }
+                {
+                    nomsRemaining === 1 
+                    ? <p>You have <span className="nomRemaining">{nomsRemaining}</span> nomination remaining.</p>
+                    : <p>You have <span className="nomRemaining">{nomsRemaining}</span> nominations remaining.</p>
+                }
+            </div>
         </div>
     )
 }

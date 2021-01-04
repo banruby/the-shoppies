@@ -19,6 +19,7 @@ function App() {
   const [searchPreview, setSearchPreview] = useState([]);
   // holds films added to array of nominees
   const [nominees, setNominees] = useState([placeholder, placeholder, placeholder, placeholder, placeholder]);
+  //TODO: make new placeholder asset
 
   const searchApi = (searchTerm) => {
     const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
@@ -27,26 +28,44 @@ function App() {
       setSearchList(resp.data.Search);
       const defaultPreview = [...resp.data.Search];
       defaultPreview.length = 1;
-      setSearchPreview(defaultPreview);
+      const newPosterData = updatePosterSize(defaultPreview)
+      setSearchPreview(newPosterData);
     }).catch(error => {
       // placeholder for error handling
       console.log(error)
+      //TODO: add error handling
     })
+  }
+
+  const removeNominee = (id) => {
+    const updatedNominees = nominees.filter(nominee => nominee.imdbID && nominee.imdbID != id)
+    for (let i = updatedNominees.length + 1; i < 6; i++) {
+      updatedNominees.push(placeholder);
+    }
+    setNominees(updatedNominees);
+  }
+
+  const updatePosterSize = (data) => {
+    const url = data[0].Poster;
+    const updatedUrl = url.replace("300", "425");
+    data[0].Poster = updatedUrl;
+    return data;
   }
 
   return (
     <div className="App">
       <Header />
       <main>
+        <NomineePanel
+          nominees={nominees}
+          setNominees={setNominees}
+          placeholder={placeholder}
+          removeNominee={removeNominee}
+        />
         <SearchBar 
           searchTitle={searchTitle}
           setSearchTitle={setSearchTitle}
           searchApi={searchApi}
-        />
-        <NomineePanel 
-          nominees={nominees}
-          setNominees={setNominees}
-          placeholder={placeholder}
         />
         <SearchList 
           searchList={searchList}
@@ -55,11 +74,15 @@ function App() {
           nominees={nominees}
           setNominees={setNominees}
           placeholder={placeholder}
+          updatePosterSize={updatePosterSize}
+          removeNominee={removeNominee}
         />
       </main>
       <Footer />
     </div>
   );
 }
+
+//TODO: double check that all props are being used for each component
 
 export default App;

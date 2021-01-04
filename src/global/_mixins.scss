@@ -1,5 +1,6 @@
 @mixin font-bebas {
     font-family: 'Bebas Neue', 'Arial', 'sans-serif';
+    font-weight: 400;
 }
 
 @mixin font-roboto {
@@ -8,6 +9,10 @@
 
 @mixin transition {
     transition: all 0.3s ease-in-out;
+}
+
+@mixin border-radius {
+    border-radius: 4px;
 }
 
 @mixin font-size($sizeValue) {

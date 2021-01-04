@@ -9,10 +9,37 @@
     }
     .col {
         width: 49%;
+        background-color: $cream;
+        @include border-radius;
+        padding: 1rem;
+    }
+    .heading {
+        @include font-size(20);
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+    h3 {
+        @include font-size(35);
+        @include font-bebas;
+        margin: 0;
+        color: $black;
+        text-align: center;
     }
 
     .col-2 {
-        background-color: $white;
+        text-align: center;
+        p {
+            max-width: 425px;
+            margin: 0 auto;
+            &:first-of-type {
+                margin-top: 1rem;
+            }
+        }
+    }
+
+    img {
+        @include border-radius;
     }
 
     ul {
@@ -21,7 +48,30 @@
         list-style-type: none;
     }
 
-    button {
-        display: block;
+    button.primary {
+        margin-top: 1rem;
+        font-size: 24px;
+        width: 10rem;
+        &:hover, &:active, &:focus {
+            background-color: $dark;
+            border-color: $dark;
+            color: $white;
+        }
+    }
+
+    .warnings {
+        button.primary {
+            background-color: $dark;
+            border-color: $dark;
+            color: $white;
+            &:hover, &:active, &:focus {
+                background-color: $light-red;
+                border-color: $red;
+                color: $black;
+            }
+        }
+        .nomRemaining {
+            font-weight: bold;
+        }
     }
 }

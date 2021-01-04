@@ -15,7 +15,7 @@ const NomineeCard = (props) => {
                         <img src={poster} alt={alt} />
                         <figcaption>{title} ({year})</figcaption>
                     </figure>
-                    <button onClick={() => removeNominee(id)}>REMOVE</button>
+                    <button className="primary" onClick={() => removeNominee(id)}>REMOVE</button>
                 </div>
                 :
                 <figure>

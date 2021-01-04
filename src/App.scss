@@ -1,13 +1,14 @@
 @import "./global/global";
 
 main {
-    min-height: calc(100vh - 2rem);
+    min-height: calc(100vh - 9.5rem);
     //TODO: update to only include removing the exact height of the header and footer
-    background-color: $white;
+    background-color: $cream;
 }
 
 .wrapper {
-    max-width: 1200px;
+    max-width: 1240px;
+    padding: 0 1rem;
     margin: 0 auto;
 }
 
@@ -16,4 +17,33 @@ p {
     @include font-size(20);
     margin: 0;
     color: $text;
+}
+
+button.primary {
+    display: block;
+    @include font-size(18);
+    @include font-bebas;
+    color: $black;
+    margin: 0.5rem auto 0 auto;
+    @include border-radius;
+    border: 2px solid $green;
+    background-color: $lighter;
+    padding: 0.25rem 1.25rem;
+    letter-spacing: 0.5px;
+    @include transition;
+}
+
+button.secondary {
+    @extend button.primary;
+    @include font-size(22);
+    @include font-roboto;
+    width: 100%;
+    margin: 1rem auto 0 auto;
+    padding: 0.5rem 2rem;
+    &:active, &:hover, &:focus {
+        background-color: $dark;
+        border-color: $dark;
+        color: $white;
+        font-weight: bold;
+    }
 }
