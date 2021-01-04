@@ -19,3 +19,11 @@
     font-size: $sizeValue * 1px;
     font-size: ($sizeValue / 20) * 1rem;
 }
+
+@mixin tablet {
+  @media (min-width: 767px) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: 999px) { @content; }
+}

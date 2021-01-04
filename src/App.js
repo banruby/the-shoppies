@@ -67,16 +67,18 @@ function App() {
           setSearchTitle={setSearchTitle}
           searchApi={searchApi}
         />
-        <SearchList 
-          searchList={searchList}
-          searchPreview={searchPreview}
-          setSearchPreview={setSearchPreview}
-          nominees={nominees}
-          setNominees={setNominees}
-          placeholder={placeholder}
-          updatePosterSize={updatePosterSize}
-          removeNominee={removeNominee}
-        />
+        { (searchList.length > 0) &&
+          <SearchList 
+            searchList={searchList}
+            searchPreview={searchPreview}
+            setSearchPreview={setSearchPreview}
+            nominees={nominees}
+            setNominees={setNominees}
+            placeholder={placeholder}
+            updatePosterSize={updatePosterSize}
+            removeNominee={removeNominee}
+          />
+        }
       </main>
       <Footer />
     </div>
@@ -84,5 +86,6 @@ function App() {
 }
 
 //TODO: double check that all props are being used for each component
+//TODO: add a check to stop SearchList from rendering before it is used
 
 export default App;
