@@ -20,7 +20,7 @@ function App() {
   const [nominees, setNominees] = useState([]);
 
   const searchApi = (searchTerm) => {
-    const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
+    const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
 
     axios.get(apiUrl).then((resp) => {
       const status = resp.data.Response;
