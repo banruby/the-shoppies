@@ -61,10 +61,8 @@ form {
     }
 }
 
-@include tablet {
-
-    }
-
-    @include desktop {
-        
-    }
+.error {
+    padding-top: 1rem;
+    color: $red;
+    font-weight: bold;
+}

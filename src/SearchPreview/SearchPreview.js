@@ -1,6 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilm, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
 const SearchPreview = (props) => {
 

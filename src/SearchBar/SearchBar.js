@@ -4,7 +4,7 @@ import "./SearchBar.scss";
 const SearchBar = (props) => {
 
     // destructuring the props
-    const { setSearchTitle, searchApi } = props;
+    const { setSearchTitle, searchApi, callStatus } = props;
     // holding the search value as it's typed in state
     const [inputValue, setInputValue] = useState('');
 
@@ -31,6 +31,10 @@ const SearchBar = (props) => {
                     />
                     <input type="submit" value="SEARCH" />
                 </form>
+                {
+                    callStatus === "False" && 
+                    <p className="error">Your search did not return any results. Try another film title!</p>
+                }
             </div>
         </section>
     )

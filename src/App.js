@@ -6,13 +6,13 @@ import SearchBar from './SearchBar/SearchBar';
 import NomineePanel from './NomineePanel/NomineePanel';
 import SearchList from './SearchList/SearchList';
 import Footer from './Footer/Footer';
-import trophy from './assets/trophy.svg';
 
 function App() {
   //TODO: add a favicon to index.html
-
+  // secret key!
   const apiKey = process.env.REACT_APP_API_KEY;
   // holds the value currently in the search field
+  const [callStatus, setCallStatus] = useState(false);
   const [searchTitle, setSearchTitle] = useState('');
   // holds the list of searched titles
   const [searchList, setSearchList] = useState([]);
@@ -20,17 +20,24 @@ function App() {
   const [searchPreview, setSearchPreview] = useState([]);
   // holds films added to array of nominees
   const [nominees, setNominees] = useState([]);
-  //TODO: make new placeholder asset
 
   const searchApi = (searchTerm) => {
     const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
 
     axios.get(apiUrl).then((resp) => {
-      setSearchList(resp.data.Search);
-      const defaultPreview = [...resp.data.Search];
-      defaultPreview.length = 1;
-      const newPosterData = updatePosterSize(defaultPreview)
-      setSearchPreview(newPosterData);
+      const status = resp.data.Response;
+      console.log(status)
+      console.log(typeof status)
+      if (status === "True") {
+        setCallStatus(status);
+        setSearchList(resp.data.Search);
+        const defaultPreview = [...resp.data.Search];
+        defaultPreview.length = 1;
+        const newPosterData = updatePosterSize(defaultPreview)
+        setSearchPreview(newPosterData);
+      } else {
+        setCallStatus(status);
+      }
     }).catch(error => {
       // placeholder for error handling
       console.log(error)
@@ -79,6 +86,7 @@ function App() {
           searchTitle={searchTitle}
           setSearchTitle={setSearchTitle}
           searchApi={searchApi}
+          callStatus={callStatus}
         />
         { (searchList.length > 0) &&
           <SearchList 

@@ -12,10 +12,7 @@ const SearchList = (props) => {
         const selectedFilm = searchList.filter(film => film.imdbID === id);
         const updatedArray = updatePosterSize(selectedFilm)
         setSearchPreview(updatedArray);
-        //TODO: add check to ensure there are results to display
     }
-
-    console.log(searchPreview)
 
     return (
         <section className="searchListContainer">
