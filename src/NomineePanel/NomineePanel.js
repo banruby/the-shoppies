@@ -19,7 +19,6 @@ const NomineePanel = (props) => {
                                 title={nominee.Title}
                                 year={nominee.Year}
                                 poster={nominee.Poster}
-                                placeholder={nominee.placeholder}
                                 removeNominee={removeNominee}
                             />
                         )})

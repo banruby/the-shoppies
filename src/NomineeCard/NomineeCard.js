@@ -2,8 +2,7 @@ import React from 'react';
 
 const NomineeCard = (props) => {
 
-    const { id, title, year, poster, removeNominee, placeholder } = props;
-
+    const { id, title, year, poster, removeNominee } = props;
     const alt = `${title} poster`;
 
     return (
@@ -18,9 +17,9 @@ const NomineeCard = (props) => {
                     <button className="primary" onClick={() => removeNominee(id)}>REMOVE</button>
                 </div>
                 :
-                <figure>
-                    <img src={placeholder} alt="" />
-                </figure>
+                <div className="figureContainer">
+                    <div className="trophy"></div>
+                </div>                
             }
         </li>
     )

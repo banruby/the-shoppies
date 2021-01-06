@@ -4,7 +4,7 @@ import { faFilm, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
 const SearchPreview = (props) => {
 
-    const { searchPreview, nominees, setNominees, placeholder, removeNominee } = props;
+    const { searchPreview, nominees, setNominees, removeNominee, fillPlaceholders } = props;
     
     const previewData = searchPreview[0]
     const alt = `${previewData.Title} poster`;
@@ -13,19 +13,13 @@ const SearchPreview = (props) => {
         let updatedNominees = [...nominees];
         updatedNominees = updatedNominees.filter(nominee => nominee.imdbID);
         updatedNominees.push(searchPreview[0]);
-        for (let i = updatedNominees.length + 1; i < 6; i++) {
-            updatedNominees.push(placeholder);
-        }
+        updatedNominees = fillPlaceholders(updatedNominees);
         setNominees(updatedNominees);
     }
 
     const userChoices = nominees.filter(nominee => nominee.imdbID)
     const duplicateCheck = userChoices.filter(nominee => nominee.imdbID === previewData.imdbID)
     const nomsRemaining = 5 - userChoices.length;
-    console.log(nomsRemaining)
-
-    const filmIcon = <FontAwesomeIcon icon={faFilm} className="icon filmIcon"/>
-    const calendarIcon = <FontAwesomeIcon icon={faCalendarAlt} className="icon calendarIcon" />
 
     return (
         <div>

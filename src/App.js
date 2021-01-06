@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
 import axios from 'axios';
 import Header from './Header/Header';
@@ -6,11 +6,12 @@ import SearchBar from './SearchBar/SearchBar';
 import NomineePanel from './NomineePanel/NomineePanel';
 import SearchList from './SearchList/SearchList';
 import Footer from './Footer/Footer';
+import trophy from './assets/trophy.svg';
 
 function App() {
+  //TODO: add a favicon to index.html
 
   const apiKey = process.env.REACT_APP_API_KEY;
-  const placeholder = { placeholder: "http://placekitten.com/g/300/450" }
   // holds the value currently in the search field
   const [searchTitle, setSearchTitle] = useState('');
   // holds the list of searched titles
@@ -18,7 +19,7 @@ function App() {
   // holds the film selected for preview
   const [searchPreview, setSearchPreview] = useState([]);
   // holds films added to array of nominees
-  const [nominees, setNominees] = useState([placeholder, placeholder, placeholder, placeholder, placeholder]);
+  const [nominees, setNominees] = useState([]);
   //TODO: make new placeholder asset
 
   const searchApi = (searchTerm) => {
@@ -38,10 +39,8 @@ function App() {
   }
 
   const removeNominee = (id) => {
-    const updatedNominees = nominees.filter(nominee => nominee.imdbID && nominee.imdbID != id)
-    for (let i = updatedNominees.length + 1; i < 6; i++) {
-      updatedNominees.push(placeholder);
-    }
+    let updatedNominees = nominees.filter(nominee => nominee.imdbID && nominee.imdbID != id)
+    updatedNominees = fillPlaceholders(updatedNominees)
     setNominees(updatedNominees);
   }
 
@@ -52,6 +51,21 @@ function App() {
     return data;
   }
 
+  const fillPlaceholders = (arr) => {
+    for (let i = arr.length + 1; i < 6; i++) {
+      arr.push({});
+    }
+    return arr;
+  }
+
+  useEffect(() => {
+    const placeholderArray = [];
+    for (let i = 0; i < 5; i++) {
+      placeholderArray.push({})
+    }
+    setNominees(placeholderArray);
+  }, []);
+
   return (
     <div className="App">
       <Header />
@@ -59,7 +73,6 @@ function App() {
         <NomineePanel
           nominees={nominees}
           setNominees={setNominees}
-          placeholder={placeholder}
           removeNominee={removeNominee}
         />
         <SearchBar 
@@ -74,9 +87,9 @@ function App() {
             setSearchPreview={setSearchPreview}
             nominees={nominees}
             setNominees={setNominees}
-            placeholder={placeholder}
             updatePosterSize={updatePosterSize}
             removeNominee={removeNominee}
+            fillPlaceholders={fillPlaceholders}
           />
         }
       </main>
