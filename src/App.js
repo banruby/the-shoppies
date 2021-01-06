@@ -8,7 +8,6 @@ import SearchList from './SearchList/SearchList';
 import Footer from './Footer/Footer';
 
 function App() {
-  //TODO: add a favicon to index.html
 
   const apiKey = process.env.REACT_APP_API_KEY;
   // holds the value currently in the search field
@@ -103,7 +102,5 @@ function App() {
     </div>
   );
 }
-
-//TODO: double check that all props are being used for each component
 
 export default App;
