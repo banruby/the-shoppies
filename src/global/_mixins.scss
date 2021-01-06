@@ -20,8 +20,12 @@
     font-size: ($sizeValue / 20) * 1rem;
 }
 
+@mixin mobile-only {
+  @media (max-width: 767px) { @content; }
+}
+
 @mixin tablet {
-  @media (min-width: 767px) { @content; }
+  @media (min-width: 768px) { @content; }
 }
 
 @mixin desktop {

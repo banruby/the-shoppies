@@ -1,0 +1,45 @@
+@import "../global/global";
+
+.completionBanner {
+    background-color: $green;
+    margin-top: 2rem;
+    text-align: center;
+    padding-bottom: 1rem;
+
+    h4 {
+        margin: 0;
+        padding: 1rem 0;
+        @include font-bebas;
+        color: $black;
+        @include font-size(40);
+    }
+
+    p {
+        color: $black;
+    }
+
+    button {
+        display: inline-block;
+        width: 8rem;
+        border-color: $darker;
+        margin-top: 1rem;
+        @include font-size(26);
+        padding: 0.35rem 1.25rem 0.25rem 1.25rem;
+        &:first-of-type {
+            margin-right: 0.5rem;
+            &:hover, &:focus, &:active {
+                border-color: $darker;
+                background-color: $darker;
+                color: $white;
+            }
+        }
+        &:last-of-type {
+            margin-left: 0.5rem;
+            &:hover, &:focus, &:active {
+                border-color: $red;
+                background-color: $red;
+                color: $white;
+            }
+        }
+    }
+}

@@ -12,14 +12,30 @@
     }
     ul {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        flex-wrap: wrap;
         padding: 0;
         margin: 0;
         list-style-type: none;
+        @include tablet {
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
     }
     li {
-        width: calc(20% - 0.4rem);
-        display: flex;  
+        display: flex;
+        width: calc(50% - 0.5rem);
+        @include mobile-only {
+            &:nth-of-type(even) {
+            margin-left: 1rem;
+        }
+            &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5) {
+                margin-top: 1rem;
+            }
+        }
+        @include tablet {
+            width: calc(20% - 0.4rem);
+        }
     }
     .figureContainer {
         display: flex;
@@ -33,18 +49,34 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        min-height: 380px;
+        min-height: 300px;
+        @include tablet {
+            min-height: 340px;
+        }
+        @include desktop {
+            min-height: 380px;
+        }
     }
     img, .trophy {
         width: 100%;
-        height: 342px;
+        height: 280px;
         object-fit: cover;
         display: block;
+        @include tablet {
+            height: 300px;
+        }
+        @include desktop {
+            height: 342px;
+        }
     }
     .trophy {
         background: url("../assets/trophy.svg") no-repeat center center;
+        background-size: 60%;
         @include border-radius;
         border: 2px solid $green;
+        @include tablet {
+            background-size: 90%;
+        }
     }
     figcaption {
         @include font-roboto;

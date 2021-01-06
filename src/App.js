@@ -11,6 +11,7 @@ function App() {
   //TODO: add a favicon to index.html
   // secret key!
   const apiKey = process.env.REACT_APP_API_KEY;
+
   // holds the value currently in the search field
   const [callStatus, setCallStatus] = useState(false);
   const [searchTitle, setSearchTitle] = useState('');
@@ -21,13 +22,14 @@ function App() {
   // holds films added to array of nominees
   const [nominees, setNominees] = useState([]);
 
+  // const initialNoms = localStorage.theShoppies ? JSON.parse(localStorage.getItem("theShoppies")) : [];
+  // console.log(initialNoms)
+
   const searchApi = (searchTerm) => {
     const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
 
     axios.get(apiUrl).then((resp) => {
       const status = resp.data.Response;
-      console.log(status)
-      console.log(typeof status)
       if (status === "True") {
         setCallStatus(status);
         setSearchList(resp.data.Search);
@@ -46,7 +48,7 @@ function App() {
   }
 
   const removeNominee = (id) => {
-    let updatedNominees = nominees.filter(nominee => nominee.imdbID && nominee.imdbID != id)
+    let updatedNominees = nominees.filter(nominee => nominee.imdbID && nominee.imdbID !== id)
     updatedNominees = fillPlaceholders(updatedNominees)
     setNominees(updatedNominees);
   }
@@ -66,11 +68,16 @@ function App() {
   }
 
   useEffect(() => {
-    const placeholderArray = [];
-    for (let i = 0; i < 5; i++) {
-      placeholderArray.push({})
+    if (localStorage.theShoppies) {
+      const savedNoms = JSON.parse(localStorage.getItem("theShoppies"));
+      setNominees(savedNoms)
+    } else {
+      const placeholderArray = [];
+      for (let i = 0; i < 5; i++) {
+        placeholderArray.push({})
+      }
+      setNominees(placeholderArray);
     }
-    setNominees(placeholderArray);
   }, []);
 
   return (
@@ -81,6 +88,7 @@ function App() {
           nominees={nominees}
           setNominees={setNominees}
           removeNominee={removeNominee}
+          fillPlaceholders={fillPlaceholders}
         />
         <SearchBar 
           searchTitle={searchTitle}
