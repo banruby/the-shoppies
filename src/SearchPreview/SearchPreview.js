@@ -2,7 +2,7 @@ import React from 'react';
 
 const SearchPreview = (props) => {
 
-    const { searchPreview, nominees, setNominees, removeNominee, fillPlaceholders } = props;
+    const { searchPreview, nominees, setNominees, fillPlaceholders } = props;
     
     const previewData = searchPreview[0]
     const alt = `${previewData.Title} poster`;
@@ -31,7 +31,7 @@ const SearchPreview = (props) => {
             <div className="warnings">
                 {
                     duplicateCheck.length > 0 &&
-                    <button className="primary" onClick={() => removeNominee(previewData.imdbID)}>NOMINATED</button>
+                    <button className="primary">NOMINATED</button>
                 }
                 {
                     nomsRemaining === 1 

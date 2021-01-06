@@ -6,7 +6,7 @@ import "./SearchList.scss";
 const SearchList = (props) => {
 
     const { searchList, searchPreview, setSearchPreview, nominees, setNominees, 
-            updatePosterSize, removeNominee, fillPlaceholders } = props;
+            updatePosterSize, fillPlaceholders } = props;
 
     const handleClick = (id) => {
         const selectedFilm = searchList.filter(film => film.imdbID === id);
@@ -41,7 +41,6 @@ const SearchList = (props) => {
                             searchPreview={searchPreview}
                             nominees={nominees}
                             setNominees={setNominees}
-                            removeNominee={removeNominee}
                             fillPlaceholders={fillPlaceholders}
                         />
                     </div>

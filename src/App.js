@@ -9,21 +9,16 @@ import Footer from './Footer/Footer';
 
 function App() {
   //TODO: add a favicon to index.html
-  // secret key!
-  const apiKey = process.env.REACT_APP_API_KEY;
 
+  const apiKey = process.env.REACT_APP_API_KEY;
   // holds the value currently in the search field
   const [callStatus, setCallStatus] = useState(false);
-  const [searchTitle, setSearchTitle] = useState('');
-  // holds the list of searched titles
+  // holds the array of films from search
   const [searchList, setSearchList] = useState([]);
-  // holds the film selected for preview
+  // holds the film object selected for preview
   const [searchPreview, setSearchPreview] = useState([]);
   // holds films added to array of nominees
   const [nominees, setNominees] = useState([]);
-
-  // const initialNoms = localStorage.theShoppies ? JSON.parse(localStorage.getItem("theShoppies")) : [];
-  // console.log(initialNoms)
 
   const searchApi = (searchTerm) => {
     const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
@@ -41,9 +36,7 @@ function App() {
         setCallStatus(status);
       }
     }).catch(error => {
-      // placeholder for error handling
-      console.log(error)
-      //TODO: add error handling
+      window.alert(`${error} occurred. Please try your request again.`)
     })
   }
 
@@ -91,8 +84,6 @@ function App() {
           fillPlaceholders={fillPlaceholders}
         />
         <SearchBar 
-          searchTitle={searchTitle}
-          setSearchTitle={setSearchTitle}
           searchApi={searchApi}
           callStatus={callStatus}
         />
@@ -104,7 +95,6 @@ function App() {
             nominees={nominees}
             setNominees={setNominees}
             updatePosterSize={updatePosterSize}
-            removeNominee={removeNominee}
             fillPlaceholders={fillPlaceholders}
           />
         }
@@ -115,6 +105,5 @@ function App() {
 }
 
 //TODO: double check that all props are being used for each component
-//TODO: add a check to stop SearchList from rendering before it is used
 
 export default App;

@@ -4,16 +4,15 @@ import "./SearchBar.scss";
 const SearchBar = (props) => {
 
     // destructuring the props
-    const { setSearchTitle, searchApi, callStatus } = props;
+    const { searchApi, callStatus } = props;
     // holding the search value as it's typed in state
     const [inputValue, setInputValue] = useState('');
 
     const searchSubmit = (e) => {
         e.preventDefault();
         if (inputValue.length > 0) {
-            setSearchTitle(inputValue);
-            setInputValue('');
             searchApi(inputValue);
+            setInputValue('');
         }
     }
 

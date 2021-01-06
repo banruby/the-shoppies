@@ -75,14 +75,9 @@
 
     .warnings {
         button.primary {
-            background-color: $dark;
-            border-color: $dark;
+            background-color: $text;
+            border-color: $text;
             color: $white;
-            &:hover, &:active, &:focus {
-                background-color: $light-red;
-                border-color: $red;
-                color: $black;
-            }
         }
         .nomRemaining {
             font-weight: bold;
