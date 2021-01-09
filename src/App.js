@@ -14,7 +14,7 @@ function App() {
   const [searchList, setSearchList] = useState([]); // holds the array of films from search
   const [searchPreview, setSearchPreview] = useState([]); // holds the film object displayed in preview
   const [nominees, setNominees] = useState([]); // holds films added to array of nominees
-  const [savedNominees, setSavedNominees] = useState([]); // holds noms pulled from local storage
+  const [savedNominees, setSavedNominees] = useState([]); // holds in local storage
 
   const searchApi = (searchTerm) => {
     const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
@@ -49,13 +49,6 @@ function App() {
     return data;
   }
 
-  const fillPlaceholders = (arr) => {
-    for (let i = arr.length + 1; i < 6; i++) {
-      arr.push({});
-    }
-    return arr;
-  }
-
   useEffect(() => {
     if (localStorage.theShoppies) {
       const savedNoms = JSON.parse(localStorage.getItem("theShoppies"));
@@ -66,7 +59,14 @@ function App() {
       fillPlaceholders(placeholderArray);
       setNominees(placeholderArray);
     }
-  }, []);
+  }, []); // only runs on initial load
+
+  const fillPlaceholders = (arr) => {
+    for (let i = arr.length + 1; i < 6; i++) {
+      arr.push({});
+    }
+    return arr;
+  }
 
   return (
     <div className="App">
@@ -77,6 +77,8 @@ function App() {
           setNominees={setNominees}
           removeNominee={removeNominee}
           fillPlaceholders={fillPlaceholders}
+          savedNominees={savedNominees}
+          setSavedNominees={setSavedNominees}
         />
         <SearchBar 
           searchApi={searchApi}

@@ -4,7 +4,7 @@ import CompletionPanel from '../CompletionBanner/CompletionBanner';
 import "./NomineePanel.scss";
 
 const NomineePanel = (props) => {
-    const { nominees, setNominees, removeNominee, fillPlaceholders } = props;
+    const { nominees, setNominees, removeNominee, fillPlaceholders, savedNominees, setSavedNominees } = props;
     const [bannerView, setBannerView] = useState(false);
 
     useEffect(() => {
@@ -25,6 +25,7 @@ const NomineePanel = (props) => {
 
     const saveNoms = () => {
         localStorage.setItem("theShoppies", JSON.stringify(nominees));
+        setSavedNominees(nominees);
     }
 
     return (
@@ -52,6 +53,7 @@ const NomineePanel = (props) => {
                     resetNoms={resetNoms}
                     saveNoms={saveNoms}
                     nominees={nominees}
+                    savedNominees={savedNominees}
                 />
             }
         </section>
