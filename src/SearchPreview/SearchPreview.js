@@ -35,7 +35,7 @@ const SearchPreview = (props) => {
             <div className="warnings">
                 {
                     duplicateCheck.length > 0 &&
-                    <button className="primary">NOMINATED</button>
+                    <button className="primary" disabled>NOMINATED</button>
                 }
                 {
                     nomsRemaining === 1 

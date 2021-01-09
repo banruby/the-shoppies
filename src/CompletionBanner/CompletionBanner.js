@@ -32,9 +32,12 @@ const CompletionBanner = (props) => {
                 <h4>Your nominations are complete!</h4>
                 <p>Not sure if you've got the right picks yet? Very sure?</p>
                 <p>Lock in your nominations below or reset to start fresh!</p>
-                <button className="primary" onClick={saveNoms}>
-                    {saveStatus ? "SAVED" : "SAVE"}
-                </button>
+                {
+                    saveStatus ? 
+                    <button className="primary" disabled>SAVED</button>
+                    :
+                    <button className="primary" onClick={saveNoms}>SAVE</button>
+                }
                 <button className="primary" onClick={resetNoms}>RESET</button>
             </div>
         </div>

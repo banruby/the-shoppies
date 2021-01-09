@@ -41,5 +41,10 @@
                 color: $white;
             }
         }
+        &[disabled] {
+            border-color: $darker;
+            background-color: $darker;
+            color: $white;
+        }
     }
 }

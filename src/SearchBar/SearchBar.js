@@ -3,10 +3,8 @@ import "./SearchBar.scss";
 
 const SearchBar = (props) => {
 
-    // destructuring the props
     const { searchApi, callStatus } = props;
-    // holding the search value as it's typed in state
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(''); // holding the search value as it's typed in state
 
     const searchSubmit = (e) => {
         e.preventDefault();

@@ -7,7 +7,7 @@ const NomineePanel = (props) => {
     const { nominees, setNominees, removeNominee, fillPlaceholders, savedNominees, setSavedNominees } = props;
     const [bannerView, setBannerView] = useState(false);
 
-    useEffect(() => {
+    useEffect(() => { // changes state to render completion banner
         const nomCount = nominees.filter(nominee => nominee.imdbID);
         if (nomCount.length === 5) {
             setBannerView(true);
@@ -16,14 +16,14 @@ const NomineePanel = (props) => {
         }
     }, [nominees]);
 
-    const resetNoms = () => {
+    const resetNoms = () => { //resets nominees and removes them from local storage
         let reset = [];
         reset = fillPlaceholders(reset)
         setNominees(reset);
         localStorage.removeItem('theShoppies');
     }
 
-    const saveNoms = () => {
+    const saveNoms = () => { // saves nominees in local storage and in state
         localStorage.setItem("theShoppies", JSON.stringify(nominees));
         setSavedNominees(nominees);
     }
