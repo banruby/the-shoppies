@@ -1,4 +1,5 @@
 import React from 'react';
+import clapper from '../assets/square-clapper.png'
 
 const SearchPreview = (props) => {
 
@@ -21,7 +22,10 @@ const SearchPreview = (props) => {
 
     return (
         <div>
-            <img src={previewData.Poster} alt={alt}/>
+            <img 
+                src={(previewData.Poster === "N/A") ? clapper : previewData.Poster}
+                alt={(previewData.Poster === "N/A") ? "" : alt}
+            />
             <p><span className="heading">Title:</span> {previewData.Title}</p>
             <p><span className="heading">Year:</span> {previewData.Year}</p>
             {
