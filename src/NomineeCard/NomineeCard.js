@@ -1,4 +1,5 @@
 import React from 'react';
+import clapper from "../assets/clapper.png";
 
 const NomineeCard = (props) => {
 
@@ -10,10 +11,20 @@ const NomineeCard = (props) => {
             {
                 id ?
                 <div className="figureContainer">
-                    <figure>
-                        <img src={poster} alt={alt} />
-                        <figcaption>{title} ({year})</figcaption>
-                    </figure>
+                    {
+                        (poster !== "N/A") && 
+                        <figure>
+                            <img src={poster} alt={alt} />
+                            <figcaption>{title} ({year})</figcaption>
+                        </figure>
+                    }
+                    {
+                        (poster === "N/A") &&
+                        <figure>
+                            <img className="clapper" src={clapper} alt="" />
+                            <figcaption>{title} ({year})</figcaption>
+                        </figure>
+                    }
                     <button className="primary" onClick={() => removeNominee(id)}>REMOVE</button>
                 </div>
                 :

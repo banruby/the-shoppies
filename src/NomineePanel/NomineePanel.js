@@ -32,10 +32,10 @@ const NomineePanel = (props) => {
             <div className="wrapper">
                 <h2>Your Shoppie Nominees:</h2>
                 <ul>
-                    {nominees.map((nominee) => {
+                    {nominees.map((nominee, index) => {
                         return (
                             <NomineeCard 
-                                key={nominee.imdbID}
+                                key={nominee.imdbID ? nominee.imdbID : index}
                                 id={nominee.imdbID}
                                 title={nominee.Title}
                                 year={nominee.Year}
@@ -51,6 +51,7 @@ const NomineePanel = (props) => {
                 <CompletionPanel
                     resetNoms={resetNoms}
                     saveNoms={saveNoms}
+                    nominees={nominees}
                 />
             }
         </section>

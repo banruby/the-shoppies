@@ -10,14 +10,11 @@ import Footer from './Footer/Footer';
 function App() {
 
   const apiKey = process.env.REACT_APP_API_KEY;
-  // holds the value currently in the search field
-  const [callStatus, setCallStatus] = useState(false);
-  // holds the array of films from search
-  const [searchList, setSearchList] = useState([]);
-  // holds the film object selected for preview
-  const [searchPreview, setSearchPreview] = useState([]);
-  // holds films added to array of nominees
-  const [nominees, setNominees] = useState([]);
+  const [callStatus, setCallStatus] = useState(false); // holds the api call status
+  const [searchList, setSearchList] = useState([]); // holds the array of films from search
+  const [searchPreview, setSearchPreview] = useState([]); // holds the film object displayed in preview
+  const [nominees, setNominees] = useState([]); // holds films added to array of nominees
+  const [savedNominees, setSavedNominees] = useState([]); // holds noms pulled from local storage
 
   const searchApi = (searchTerm) => {
     const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${searchTerm}`
@@ -62,12 +59,11 @@ function App() {
   useEffect(() => {
     if (localStorage.theShoppies) {
       const savedNoms = JSON.parse(localStorage.getItem("theShoppies"));
-      setNominees(savedNoms)
+      setNominees(savedNoms);
+      setSavedNominees(savedNoms);
     } else {
       const placeholderArray = [];
-      for (let i = 0; i < 5; i++) {
-        placeholderArray.push({})
-      }
+      fillPlaceholders(placeholderArray);
       setNominees(placeholderArray);
     }
   }, []);
